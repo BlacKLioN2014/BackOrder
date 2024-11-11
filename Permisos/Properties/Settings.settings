@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Permisos.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HanaConec" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=Hanab1:30013;UserID=SYSTEM;Password=B1AdminH2;Database=NDB</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

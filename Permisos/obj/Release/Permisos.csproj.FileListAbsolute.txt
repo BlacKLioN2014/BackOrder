@@ -1,0 +1,62 @@
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\Permisos.exe.config
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\Permisos.exe
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\Permisos.pdb
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\SAPBusinessOneSDK.dll
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\Sap.Data.Hana.v4.5.pdb
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\Sap.Data.Hana.v4.5.xml
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll.config
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.csproj.AssemblyReference.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.csproj.SuggestedBindingRedirects.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.Properties.Resources.resources
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.csproj.GenerateResource.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.csproj.CoreCompileInputs.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.csproj.CopyComplete
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.exe
+C:\Users\Ismael\Desktop\Proyects\Permisos\Permisos\obj\Release\Permisos.pdb
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\Permisos.exe.config
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\Permisos.exe
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\Permisos.pdb
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\SAPBusinessOneSDK.dll
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.pdb
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.xml
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll.config
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.csproj.AssemblyReference.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.csproj.SuggestedBindingRedirects.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.Properties.Resources.resources
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.csproj.GenerateResource.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.csproj.CoreCompileInputs.cache
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.csproj.CopyComplete
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.exe
+C:\Users\Ismael\Desktop\Proyects\Permisos PPA\Permisos\obj\Release\Permisos.pdb
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\Permisos.exe.config
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\Permisos.exe
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\Permisos.pdb
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\SAPBusinessOneSDK.dll
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.pdb
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.xml
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll.config
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\obj\Release\Permisos.csproj.AssemblyReference.cache
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\obj\Release\Permisos.Properties.Resources.resources
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\obj\Release\Permisos.csproj.GenerateResource.cache
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\obj\Release\Permisos.csproj.CoreCompileInputs.cache
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\obj\Release\Permisos.csproj.Up2Date
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\obj\Release\Permisos.exe
+C:\Users\Ismael\Desktop\Permisos PPA\Permisos\obj\Release\Permisos.pdb
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\Permisos.exe.config
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\Permisos.exe
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\Permisos.pdb
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\SAPBusinessOneSDK.dll
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\Sap.Data.Hana.v4.5.pdb
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\Sap.Data.Hana.v4.5.xml
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\Release\Sap.Data.Hana.v4.5.dll.config
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\Release\Permisos.csproj.AssemblyReference.cache
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\Release\Permisos.Properties.Resources.resources
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\Release\Permisos.csproj.GenerateResource.cache
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\Release\Permisos.csproj.CoreCompileInputs.cache
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\Release\Permisos.csproj.Up2Date
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\Release\Permisos.exe
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\Release\Permisos.pdb

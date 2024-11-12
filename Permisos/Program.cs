@@ -14,13 +14,16 @@ namespace Permisos
 
 
         public static SAPbouiCOM.EditText _Bton;
-        public static SAPbouiCOM.Item oItem;
         public static SAPbouiCOM.Button oButtonAdd;
+        //public static SAPbouiCOM.EditText _Bton_;
+        //public static SAPbouiCOM.EditText _Bton_Agregar;
+        public static SAPbouiCOM.Item oItem;
         public static SAPbouiCOM.Form oForm;
         public static SAPbouiCOM.EditText oEditTextDocNum;
         public static SAPbouiCOM.Matrix oMatrix;
         public static SAPbouiCOM.Application sbo_application;
         public static string CodeBar = string.Empty;
+        public static bool Band_Pressed = false;
 
 
         [STAThread]
@@ -96,17 +99,20 @@ namespace Permisos
             {
 
                 //Antes
-                # region pValBeforeAction item event
+                #region pValBeforeAction item event 
 
                 if (pVal.BeforeAction)
                 {
 
                     #region OFERTA DE VENTAS
 
-                    if (pVal.FormTypeEx == "149")
+                    if (pVal.FormTypeEx == "149") //Forma Oferta de ventas
                     {
-                        if (pVal.EventType == SAPbouiCOM.BoEventTypes.et_FORM_DRAW)
+                        if (pVal.EventType == SAPbouiCOM.BoEventTypes.et_FORM_DRAW) //Evento cargando forma
                         {
+
+                            Band_Pressed = false; //Band_Pressed  SE REINICIA A FALSE
+
                             oForm = sbo_application.Forms.GetForm("149", 1);
 
                             oItem = oForm.Items.Add("btnPrueba", SAPbouiCOM.BoFormItemTypes.it_BUTTON);
@@ -114,21 +120,19 @@ namespace Permisos
 
                             oItem.Top = 120;
                             oItem.Left = _Bton.Item.Left;
-                            oItem.Width = 70;
+                            oItem.Width = 150;
 
                             oButtonAdd = (SAPbouiCOM.Button)oItem.Specific;
-                            oButtonAdd.Caption = "BackOrder";
+                            oButtonAdd.Caption = "Procesar BackOrder";
                             oButtonAdd = null;
+
                         }
 
                         if (pVal.EventType == SAPbouiCOM.BoEventTypes.et_ITEM_PRESSED)
                         {
-                            // Verificamos si el ítem presionado es nuestro botón
-                            if (pVal.ItemUID == "btnPrueba")
-                            {
-                                sbo_application.StatusBar.SetText("boton presionado", SAPbouiCOM.BoMessageTime.bmt_Short,
-                           SAPbouiCOM.BoStatusBarMessageType.smt_Success);
 
+                            if (pVal.ItemUID == "btnPrueba")// Verificamos si el ítem presionado es nuestro botón
+                            {
                                 try
                                 {
 
@@ -153,6 +157,9 @@ namespace Permisos
                                         Application.SBO_Application.SetStatusBarMessage("Favor de ingresar al menos una partida", SAPbouiCOM.BoMessageTime.bmt_Short, false);
                                         return;
                                     }
+
+                                    //Band_Pressed  AHORA ES TRUE
+                                    Band_Pressed = true;
 
                                     SAPbouiCOM.Column Col_CodeBars = oMatrix.Columns.Item("4");
                                     string Col_CodeBarstitle = Col_CodeBars.Title;
@@ -181,6 +188,7 @@ namespace Permisos
                                         int disponible = Convert.ToInt32(U_Disponible.Replace(".00", ""));
 
                                         string tipo = ((dynamic)((SAPbouiCOM.ColumnClass)Col_Tipo).Cells.Item(i).Specific).value;
+
                                         string CantidadString = ((dynamic)((SAPbouiCOM.ColumnClass)Col_Cantidad).Cells.Item(i).Specific).value;
                                         int Cantidad = Convert.ToInt32(CantidadString.Replace(".000000", ""));
 
@@ -195,7 +203,7 @@ namespace Permisos
                                                 SAPbouiCOM.ComboBox oComboRef = (SAPbouiCOM.ComboBox)Col_U_BackOrder.Cells.Item(i).Specific;
                                                 oComboRef.Select("03", SAPbouiCOM.BoSearchKey.psk_ByValue);
 
-                                                if(tipo != "")
+                                                if (tipo != "")
                                                 {
                                                     //cambiamos tipo a regular
                                                     oComboRef = (SAPbouiCOM.ComboBox)Col_Tipo.Cells.Item(i).Specific;
@@ -215,10 +223,10 @@ namespace Permisos
                                         }
                                         else
                                         {
-                                            
+
                                             if (BackOrder == "01")
                                             {
-                                                if(tipo != "A")
+                                                if (tipo != "A")
                                                 {
                                                     //cambiamos tipo a alternativo
                                                     SAPbouiCOM.ComboBox oComboRef = (SAPbouiCOM.ComboBox)Col_Tipo.Cells.Item(i).Specific;
@@ -227,7 +235,7 @@ namespace Permisos
                                             }
                                             else
                                             {
-                                                
+
                                                 //cambiamos cambiamos backorder a 01
                                                 SAPbouiCOM.ComboBox oComboRef = (SAPbouiCOM.ComboBox)Col_U_BackOrder.Cells.Item(i).Specific;
                                                 oComboRef.Select("01", SAPbouiCOM.BoSearchKey.psk_ByValue);
@@ -239,22 +247,49 @@ namespace Permisos
                                                     oComboRef.Select("A", SAPbouiCOM.BoSearchKey.psk_ByValue);
                                                 }
 
-
                                             }
                                         }
 
 
                                     }
+                                    //Quitar lo desabilitado de boton agregar
+                                    //oForm.Items.Item("1").Enabled = true;
+                                    //oForm.Items.Item("2349990001").Enabled = true;
+                                    sbo_application.StatusBar.SetText("Análisis  Back Order completado", SAPbouiCOM.BoMessageTime.bmt_Short,
+                                    SAPbouiCOM.BoStatusBarMessageType.smt_Success);
                                     return;
                                 }
                                 catch (Exception ex)
                                 {
-                                    Application.SBO_Application.SetStatusBarMessage("Error " + ex.Message +". " +CodeBar, SAPbouiCOM.BoMessageTime.bmt_Short, false);
+                                    Application.SBO_Application.SetStatusBarMessage("Error " + ex.Message + ". " + CodeBar, SAPbouiCOM.BoMessageTime.bmt_Short, false);
                                     return;
                                 }
                             }
 
+                            //if (pVal.ItemUID == "4")
+                            //{
+                            //    //Desabilitado de boton agregar
+                            //    //oForm.Items.Item("1").Enabled = false;
+                            //    //oForm.Items.Item("2349990001").Enabled = false;
+                            //}
 
+                            if(pVal.ItemUID == "1")
+                            {
+                                if(oForm.Mode == SAPbouiCOM.BoFormMode.fm_ADD_MODE || oForm.Mode == SAPbouiCOM.BoFormMode.fm_OK_MODE)
+                                {
+                                    if (!Band_Pressed)
+                                    {
+                                        sbo_application.StatusBar.SetText("Es necesario hacer clic en el botón 'Procesar BackOrder'.", SAPbouiCOM.BoMessageTime.bmt_Short,
+                                        SAPbouiCOM.BoStatusBarMessageType.smt_Warning);
+                                        BubbleEvent = false;
+                                        //return;
+                                    }
+                                    else
+                                    {
+                                        Band_Pressed = false;
+                                    }
+                                }
+                            }
                         }
 
                     }
@@ -270,7 +305,25 @@ namespace Permisos
 
                 //else if (!pVal.BeforeAction)
                 //{
+                //    if (pVal.FormTypeEx == "149") //Forma Oferta de ventas
+                //    {
+                //        if (pVal.EventType == SAPbouiCOM.BoEventTypes.et_ITEM_PRESSED)
+                //        {
+                //            if (pVal.ItemUID == "btnPrueba")
+                //            {
+                //                if (Band_Pressed)
+                //                {
+                //                    //Desabilitado de boton agregar
+                //                    oForm = sbo_application.Forms.GetForm("-149", 1);
+                //                    //oForm.Items.Item("2349990001").Enabled = false;
+                //                    //cambiamos cambiamos backorder de cabecera
+                //                    SAPbouiCOM.ComboBox oComboRef = (SAPbouiCOM.ComboBox)oForm.Items.Item("U_BackOrder").Specific;
+                //                    oComboRef.Select("02", SAPbouiCOM.BoSearchKey.psk_ByValue);
+                //                }
 
+                //            }
+                //        }
+                //    }
                 //}
 
                 #endregion

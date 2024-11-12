@@ -5,12 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{541790A4-DB32-4392-82BB-BF76331E800F}|Permisos\\Permisos.csproj|c:\\users\\ismael\\desktop\\backorder\\permisos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{541790A4-DB32-4392-82BB-BF76331E800F}|Permisos\\Permisos.csproj|solutionrelative:permisos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Permisos||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{541790A4-DB32-4392-82BB-BF76331E800F}|Permisos\\Permisos.csproj|c:\\users\\ismael\\desktop\\backorder\\permisos\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedHeight": 666,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Permisos",
-              "DocumentMoniker": "C:\\Users\\Ismael\\Desktop\\BackOrder\\Permisos\\Permisos.csproj",
-              "RelativeDocumentMoniker": "Permisos\\Permisos.csproj",
-              "ToolTip": "C:\\Users\\Ismael\\Desktop\\BackOrder\\Permisos\\Permisos.csproj",
-              "RelativeToolTip": "Permisos\\Permisos.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-01-18T16:59:51.213Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -55,7 +36,7 @@
               "RelativeDocumentMoniker": "Permisos\\Program.cs",
               "ToolTip": "C:\\Users\\Ismael\\Desktop\\BackOrder\\Permisos\\Program.cs",
               "RelativeToolTip": "Permisos\\Program.cs",
-              "ViewState": "AQIAANcAAAAAAAAAAAAowLYAAAAoAAAA",
+              "ViewState": "AQIAAF0AAAAAAAAAAAA5wBkBAACDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-11T17:51:55.591Z",
               "EditorCaption": ""

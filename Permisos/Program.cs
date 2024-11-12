@@ -20,7 +20,7 @@ namespace Permisos
         public static SAPbouiCOM.EditText oEditTextDocNum;
         public static SAPbouiCOM.Matrix oMatrix;
         public static SAPbouiCOM.Application sbo_application;
-
+        public static string CodeBar = string.Empty;
 
 
         [STAThread]
@@ -83,7 +83,7 @@ namespace Permisos
         {
 
             //sbo_application.MessageBox(@"Status bar event with message: """ + Text + @""" has been sent", 1, "Ok", "", "");
-            
+            return;
         }
 
 
@@ -154,6 +154,9 @@ namespace Permisos
                                         return;
                                     }
 
+                                    SAPbouiCOM.Column Col_CodeBars = oMatrix.Columns.Item("4");
+                                    string Col_CodeBarstitle = Col_CodeBars.Title;
+
                                     SAPbouiCOM.Column Col_U_Disponible = oMatrix.Columns.Item("U_Disponible");
                                     string Col_U_Disponible_title = Col_U_Disponible.Title;
 
@@ -168,8 +171,13 @@ namespace Permisos
 
                                     for (int i = 1; i <= oMatrix.RowCount - 1; i++)
                                     {
+                                        CodeBar = ((dynamic)((SAPbouiCOM.ColumnClass)Col_CodeBars).Cells.Item(i).Specific).value;
 
                                         string U_Disponible = ((dynamic)((SAPbouiCOM.ColumnClass)Col_U_Disponible).Cells.Item(i).Specific).value;
+                                        if (U_Disponible.Contains(","))
+                                        {
+                                            U_Disponible = U_Disponible.Replace(",", "");
+                                        }
                                         int disponible = Convert.ToInt32(U_Disponible.Replace(".00", ""));
 
                                         string tipo = ((dynamic)((SAPbouiCOM.ColumnClass)Col_Tipo).Cells.Item(i).Specific).value;
@@ -177,7 +185,6 @@ namespace Permisos
                                         int Cantidad = Convert.ToInt32(CantidadString.Replace(".000000", ""));
 
                                         string BackOrder = ((dynamic)((SAPbouiCOM.ColumnClass)Col_U_BackOrder).Cells.Item(i).Specific).value;
-
 
                                         if (Cantidad <= disponible)
                                         {
@@ -208,7 +215,7 @@ namespace Permisos
                                         }
                                         else
                                         {
-                                            //BackOrder 01
+                                            
                                             if (BackOrder == "01")
                                             {
                                                 if(tipo != "A")
@@ -220,7 +227,19 @@ namespace Permisos
                                             }
                                             else
                                             {
-                                                //Cambiamos back order a 01 y tipo a alternativo
+                                                
+                                                //cambiamos cambiamos backorder a 01
+                                                SAPbouiCOM.ComboBox oComboRef = (SAPbouiCOM.ComboBox)Col_U_BackOrder.Cells.Item(i).Specific;
+                                                oComboRef.Select("01", SAPbouiCOM.BoSearchKey.psk_ByValue);
+
+                                                if (tipo != "A")
+                                                {
+                                                    //cambiamos tipo a alternativo
+                                                    oComboRef = (SAPbouiCOM.ComboBox)Col_Tipo.Cells.Item(i).Specific;
+                                                    oComboRef.Select("A", SAPbouiCOM.BoSearchKey.psk_ByValue);
+                                                }
+
+
                                             }
                                         }
 
@@ -230,7 +249,7 @@ namespace Permisos
                                 }
                                 catch (Exception ex)
                                 {
-                                    Application.SBO_Application.SetStatusBarMessage("Error " + ex.Message, SAPbouiCOM.BoMessageTime.bmt_Short, false);
+                                    Application.SBO_Application.SetStatusBarMessage("Error " + ex.Message +". " +CodeBar, SAPbouiCOM.BoMessageTime.bmt_Short, false);
                                     return;
                                 }
                             }
@@ -249,10 +268,10 @@ namespace Permisos
                 //Despues
                 #region  !pVal.BeforeAction item event
 
-                else if (!pVal.BeforeAction)
-                {
+                //else if (!pVal.BeforeAction)
+                //{
 
-                }
+                //}
 
                 #endregion
 

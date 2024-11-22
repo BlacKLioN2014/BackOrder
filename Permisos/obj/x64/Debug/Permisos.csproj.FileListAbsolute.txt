@@ -1,0 +1,15 @@
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\Permisos.exe.config
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\Permisos.exe
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\Permisos.pdb
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\Sap.Data.Hana.v4.5.dll
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\SAPBusinessOneSDK.dll
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\Sap.Data.Hana.v4.5.pdb
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\Sap.Data.Hana.v4.5.xml
+C:\Users\Ismael\Desktop\BackOrder\Permisos\bin\x64\Debug\Sap.Data.Hana.v4.5.dll.config
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\x64\Debug\Permisos.csproj.AssemblyReference.cache
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\x64\Debug\Permisos.Properties.Resources.resources
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\x64\Debug\Permisos.csproj.GenerateResource.cache
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\x64\Debug\Permisos.csproj.CoreCompileInputs.cache
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\x64\Debug\Permisos.csproj.Up2Date
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\x64\Debug\Permisos.exe
+C:\Users\Ismael\Desktop\BackOrder\Permisos\obj\x64\Debug\Permisos.pdb

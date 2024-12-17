@@ -1,4 +1,5 @@
-﻿using SAPbobsCOM;
+﻿using Permisos.Models;
+using SAPbobsCOM;
 using SAPbouiCOM;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,15 @@ namespace Permisos
 
 
         public static SAPbobsCOM.Company oCompany;
-        public static SAPbouiCOM.EditText _Bton;
+        //public static SAPbouiCOM.EditText _Bton;
+        public static SAPbouiCOM.Button _Bton;
         public static SAPbouiCOM.Button oButtonAdd;
         public static SAPbouiCOM.Item oItem;
         public static SAPbouiCOM.Form oForm;
         public static SAPbouiCOM.EditText CardCode;
         public static SAPbouiCOM.ComboBox U_Sucursal;
         public static SAPbouiCOM.Matrix oMatrix;
+        public static SAPbouiCOM.Matrix oMatrixNew;
         public static SAPbouiCOM.Application sbo_application;
         public static string ItemCode = string.Empty;
         public static bool Band_Pressed = false;
@@ -135,6 +138,9 @@ namespace Permisos
                                         //CardCode
                                         CardCode = (SAPbouiCOM.EditText)oForm.Items.Item("4").Specific;
 
+                                        //Shiptocode
+                                        SAPbouiCOM.ComboBox ShipToCode =(SAPbouiCOM.ComboBox)oForm.Items.Item("40").Specific;
+
                                         //Matrix
                                         oMatrix = (SAPbouiCOM.Matrix)oForm.Items.Item("38").Specific;
 
@@ -145,10 +151,22 @@ namespace Permisos
                                             return;
                                         }
 
-                                        //U_Sucursal
+                                        //U_Sucursal 
                                         U_Sucursal = (SAPbouiCOM.ComboBox)oForm.Items.Item("U_Sucursal").Specific;
 
-                                        string Almacen_Cliente = GetAlmacenCliente(CardCode.Value);
+                                        //Buscamos el almacen en la direccion de cliente
+                                        string Almacen_Cliente = GetAlmacenCliente_Direccion(CardCode.Value, ShipToCode.Value);
+
+                                        if(Almacen_Cliente == "00")
+                                        {
+                                            Almacen_Cliente = GetAlmacenCliente(CardCode.Value);
+
+                                            if(Almacen_Cliente == "")
+                                            {
+                                                Application.SBO_Application.SetStatusBarMessage("Error: El cliente no tiene configurado un almacén en los datos maestros de su socio de negocio.", SAPbouiCOM.BoMessageTime.bmt_Short, false);
+                                                return;
+                                            }
+                                        }
 
                                         //Validacion almacen cliente
                                         if (U_Sucursal.Value == Almacen_Cliente)
@@ -346,6 +364,158 @@ namespace Permisos
                                             }
                                         }
 
+                                        else
+                                        {
+                                            if (band == false)
+                                            {
+
+                                                if (oMatrix.RowCount == 1)
+                                                {
+                                                    Application.SBO_Application.SetStatusBarMessage("Favor de ingresar al menos una partida", SAPbouiCOM.BoMessageTime.bmt_Short, false);
+                                                    return;
+                                                }
+
+                                                List<FinalItems> MtFinal = new List<FinalItems>();
+
+                                                //Band_Pressed  AHORA ES TRUE
+                                                Band_Pressed = true;
+                                                band = true;
+
+                                                SAPbouiCOM.Column Col_ItemCode = oMatrix.Columns.Item("1");
+                                                //string Col_CodeBarstitle = Col_CodeBars.Title;
+
+                                                SAPbouiCOM.Column Col_U_Disponible = oMatrix.Columns.Item("U_Disponible");
+
+                                                switch (U_Sucursal.Value)
+                                                {
+                                                    case "01":
+                                                        Col_U_Disponible = oMatrix.Columns.Item("U_DisponibleGDL");
+                                                        //string Col_U_Disponible_title = Col_U_Disponible.Title;
+                                                        break;
+
+                                                    case "02":
+                                                        Col_U_Disponible = oMatrix.Columns.Item("U_DisponibleCDMX");
+                                                        //string Col_U_Disponible_title = Col_U_Disponible.Title;
+                                                        break;
+
+                                                    case "03":
+                                                        Col_U_Disponible = oMatrix.Columns.Item("U_DisponibleMTY");
+                                                        //string Col_U_Disponible_title = Col_U_Disponible.Title;
+                                                        break;
+
+                                                    case "05":
+                                                        Col_U_Disponible = oMatrix.Columns.Item("U_DisponibleSLT");
+                                                        //string Col_U_Disponible_title = Col_U_Disponible.Title;
+                                                        break;
+                                                }
+
+                                                SAPbouiCOM.Column Col_Cantidad = oMatrix.Columns.Item("11");
+                                                //string Col_Cantidad_title = Col_Cantidad.Title;
+
+                                                int matrixOrigin = oMatrix.RowCount - 1;
+
+                                                for (int i = 1; i <= matrixOrigin; i++)
+                                                {
+
+                                                    ItemCode = ((dynamic)((SAPbouiCOM.ColumnClass)Col_ItemCode).Cells.Item(i).Specific).value;
+
+                                                    string U_Disponible = ((dynamic)((SAPbouiCOM.ColumnClass)Col_U_Disponible).Cells.Item(i).Specific).value;
+                                                    if (U_Disponible.Contains(","))
+                                                    {
+                                                        U_Disponible = U_Disponible.Replace(",", "");
+                                                    }
+                                                    int disponible = Convert.ToInt32(U_Disponible.Replace(".00", ""));
+
+
+                                                    string CantidadString = ((dynamic)((SAPbouiCOM.ColumnClass)Col_Cantidad).Cells.Item(i).Specific).value;
+                                                    int Cantidad = Convert.ToInt32(CantidadString.Replace(".000000", ""));
+
+                                                    if (Cantidad > disponible)
+                                                    {
+                                                        if (disponible < 1)
+                                                        {
+                                                            //agregamos el elemento a eliminar a la lista
+                                                            //var delete = new ItemsToDeleted
+                                                            //{
+                                                            //    Indice = i,
+                                                            //    ItemCode = ItemCode
+                                                            //};
+                                                            //deleteds.Add(delete);
+                                                        }
+                                                        else
+                                                        {
+                                                            //int diferencia = Cantidad - disponible;
+
+                                                            //cambiamos la cantidad a disponible
+                                                            //SAPbouiCOM.EditText CantidadEnLinea = (SAPbouiCOM.EditText)Col_Cantidad.Cells.Item(i).Specific;
+                                                            //CantidadEnLinea.Value = disponible.ToString();
+
+                                                            //agregar a la lista final
+                                                            var NewItem = new FinalItems
+                                                            {
+                                                                Quantity = disponible,
+                                                                ItemCode = ItemCode
+                                                            };
+                                                            MtFinal.Add(NewItem);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        //agregar a la lista final
+                                                        var NewItem = new FinalItems
+                                                        {
+                                                            Quantity = Cantidad,
+                                                            ItemCode = ItemCode
+                                                        };
+                                                        MtFinal.Add(NewItem);
+                                                    }
+
+                                                }
+
+                                                //Limpiamos matrix
+                                                oMatrix = (SAPbouiCOM.Matrix)oForm.Items.Item("38").Specific;
+                                                oMatrix.Clear();
+
+                                                int I = 0;
+                                                //Agregamos nuevos campos a matrix
+                                                foreach(var n in MtFinal)
+                                                {
+                                                    I++;
+
+                                                    if(I == 1)
+                                                    {
+                                                        oMatrix.AddRow(I);
+                                                    }
+                                                    
+                                                    SAPbouiCOM.EditText NewItemCode = (SAPbouiCOM.EditText)Col_ItemCode.Cells.Item(I).Specific;
+                                                    NewItemCode.Value = n.ItemCode;
+
+                                                    SAPbouiCOM.EditText Cantida = (SAPbouiCOM.EditText)Col_Cantidad.Cells.Item(I).Specific;
+                                                    Cantida.Value = n.Quantity.ToString();
+
+                                                }
+
+                                                #region limpiar deleteds
+                                                //if (deleteds.Count > 0)
+                                                //{
+                                                //    foreach (var delete in deleteds)
+                                                //    {
+                                                //        oMatrix.DeleteRow(delete.Indice);
+                                                //        //oMatrix.DeleteRow(delete.Indice);
+                                                //    }
+                                                //}
+                                                #endregion
+
+                                                sbo_application.StatusBar.SetText("Análisis  Back Order completado", SAPbouiCOM.BoMessageTime.bmt_Short,
+                                                SAPbouiCOM.BoStatusBarMessageType.smt_Success);
+                                            }
+                                            else
+                                            {
+                                                sbo_application.StatusBar.SetText("Análisis  Back Order previamente completado", SAPbouiCOM.BoMessageTime.bmt_Short,
+                                                SAPbouiCOM.BoStatusBarMessageType.smt_Warning);
+                                            }
+                                        }
+
                                         return;
 
                                     }
@@ -478,16 +648,21 @@ namespace Permisos
                             lista_Botones.Add(textoRandom);
 
                             ////oItem = oForm.Items.Add("btnPrueba", SAPbouiCOM.BoFormItemTypes.it_BUTTON);
-                            oItem = oForm.Items.Add(textoRandom, SAPbouiCOM.BoFormItemTypes.it_BUTTON);
-                            _Bton = (SAPbouiCOM.EditText)(oForm.Items.Item("4").Specific);
+                            /////_Bton = (SAPbouiCOM.EditText)(oForm.Items.Item("4").Specific);
 
-                            oItem.Top = 120;
-                            oItem.Left = _Bton.Item.Left;
+                            _Bton = ((SAPbouiCOM.Button)oForm.Items.Item("2").Specific);
+                            oItem = oForm.Items.Add(textoRandom, SAPbouiCOM.BoFormItemTypes.it_BUTTON);
+
+                            oItem.Top = _Bton.Item.Top;
+                            oItem.Left = _Bton.Item.Left + _Bton.Item.Width + 10; //_Bton.Item.Left;
                             oItem.Width = 150;
+                            oItem.Height = 27;
 
                             oButtonAdd = (SAPbouiCOM.Button)oItem.Specific;
                             oButtonAdd.Caption = "Procesar BackOrder";
                             oButtonAdd = null;
+
+                            return;
                         }
 
                     }
@@ -564,7 +739,7 @@ namespace Permisos
         }
 
 
-
+        //Almacen en datos maestros de socio de negocio
         public static string GetAlmacenCliente(string CardCode )
         {
             string Almacen = "";
@@ -620,6 +795,64 @@ namespace Permisos
             return Almacen;
         }
 
+
+        //Almacen en direccion de datos maestros de socio de negocio
+        public static string GetAlmacenCliente_Direccion(string CardCode,string Address)
+        {
+            string Almacen = "";
+            try
+            {
+                SAPbobsCOM.Recordset oRS;
+                StringBuilder query = new StringBuilder();
+                string valor = "";
+
+                oRS = (SAPbobsCOM.Recordset)oCompany.GetBusinessObject(BoObjectTypes.BoRecordset);
+
+                query.Append(
+                    $@"SELECT
+	                    T0.""U_Almacen""
+
+                   FROM
+	                    CRD1 T0
+
+                   WHERE
+	                    T0.""CardCode"" = '{CardCode}'
+                        and 
+	                    T0.""Address"" = '{Address}'"
+                           );
+
+                oRS.DoQuery(query.ToString());
+
+                if (oRS.RecordCount > 0)
+                {
+                    while (oRS.BoF)
+                    {
+                        valor = oRS.Fields.Item("U_Almacen").Value.ToString();
+                        if (valor != "")
+                        {
+                            Almacen = valor;
+                        }
+                        else
+                        {
+                            //Nada
+                        }
+                        oRS.MoveNext();
+                    }
+                }
+                else
+                {
+                    //Nada
+                }
+            }
+            catch (Exception ex)
+            {
+                //Nada
+                string err = string.Empty;
+                err = ex.Message;
+
+            }
+            return Almacen;
+        }
 
 
     }

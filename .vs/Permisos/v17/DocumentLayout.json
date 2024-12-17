@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{541790A4-DB32-4392-82BB-BF76331E800F}|Permisos\\Permisos.csproj|c:\\users\\ismael\\desktop\\backorder\\permisos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{541790A4-DB32-4392-82BB-BF76331E800F}|Permisos\\Permisos.csproj|solutionrelative:permisos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{541790A4-DB32-4392-82BB-BF76331E800F}|Permisos\\Permisos.csproj|C:\\Users\\Ismael\\Desktop\\BackOrder\\permisos\\models\\finalitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{541790A4-DB32-4392-82BB-BF76331E800F}|Permisos\\Permisos.csproj|solutionrelative:permisos\\models\\finalitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,7 +28,7 @@
               "RelativeDocumentMoniker": "Permisos\\Program.cs",
               "ToolTip": "C:\\Users\\Ismael\\Desktop\\BackOrder\\Permisos\\Program.cs",
               "RelativeToolTip": "Permisos\\Program.cs",
-              "ViewState": "AQIAAOsAAAAAAAAAAAAjwFQBAAAsAAAA",
+              "ViewState": "AQIAAOwBAAAAAAAAAAAcwAUCAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-03T22:15:47.89Z",
               "IsPinned": true,
@@ -41,6 +45,18 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FinalItems.cs",
+              "DocumentMoniker": "C:\\Users\\Ismael\\Desktop\\BackOrder\\Permisos\\Models\\FinalItems.cs",
+              "RelativeDocumentMoniker": "Permisos\\Models\\FinalItems.cs",
+              "ToolTip": "C:\\Users\\Ismael\\Desktop\\BackOrder\\Permisos\\Models\\FinalItems.cs",
+              "RelativeToolTip": "Permisos\\Models\\FinalItems.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T20:21:43.37Z"
             }
           ]
         }
